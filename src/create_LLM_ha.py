@@ -20,6 +20,8 @@ def paraphrase_sentence(input_sentence, paraphraser, num_return_sequences=3):
     outputs = paraphraser(input_sentence, max_length=50, num_return_sequences=num_return_sequences, do_sample=True)
     return [output['generated_text'] for output in outputs]
 
+
+
 def clean_output(text):
     """
     Clean generated text to remove artifacts like tabs, enumerations, and markdown symbols.
@@ -39,6 +41,8 @@ def clean_output(text):
         if line and not line.lower().startswith(("introduction", "list of figures")):
             cleaned_sentences.append(line)
     return "\n".join(cleaned_sentences)
+
+
 def filter_hallucinations(input_text, expanded_text, similarity_model, min_similarity=0.5):
     """
     Filter hallucinated sentences by checking semantic similarity with the input context.
@@ -52,12 +56,13 @@ def filter_hallucinations(input_text, expanded_text, similarity_model, min_simil
     similarities = util.pytorch_cos_sim(input_embedding, sentence_embeddings).squeeze(0)
 
     # Get the indices of the top N most similar sentences
-    top_indices = torch.topk(similarities, k=min(4, len(sentences))).indices.tolist()
+    top_indices = torch.topk(similarities, k=min(2, len(sentences))).indices.tolist()
 
     # Retrieve the top N sentences
     filtered_sentences = [sentences[idx].lstrip("1234567890\t. ") for idx in top_indices]
 
     return filtered_sentences
+
 
 def process_file(json_file_name, model_name, tokenizer_name, similarity_model_name, device_id):
         device = f"cuda:{device_id}" if torch.cuda.is_available() else "cpu"
@@ -70,7 +75,7 @@ def process_file(json_file_name, model_name, tokenizer_name, similarity_model_na
         tokenizer.pad_token = tokenizer.eos_token  # Set the pad_token to eos_token to avoid issues
 # for json_file_name in tqdm(json_files, desc="Processing JSON files"):
         clean_json_file_name = os.path.basename(json_file_name)[:-5]
-        file_path = f"../CC_10000/LLM_ha_4/{clean_json_file_name}.json"
+        file_path = f"../CC_10000/LLM_ha/{clean_json_file_name}.json"
         # print(file_path)
         
 
@@ -131,9 +136,9 @@ def process_file(json_file_name, model_name, tokenizer_name, similarity_model_na
                     max_new_tokens=200,
                     min_new_tokens=50,
                     pad_token_id=tokenizer.eos_token_id,
-                    do_sample=False,
+                    do_sample=True,
                     temperature=0.7,
-                    # top_k=100,
+                    top_k=100,
                     top_p=0.9,
                     repetition_penalty=1.2,
                     no_repeat_ngram_size=3,
@@ -164,9 +169,7 @@ if __name__ == "__main__":
 
     # Load models and tokenizer
     model_name = "EleutherAI/gpt-neo-2.7B"
-    # tokenizer = AutoTokenizer.from_pretrained(model_name)
-    # model = AutoModelForCausalLM.from_pretrained(model_name).to(device)
-    similarity_model = SentenceTransformer("all-MiniLM-L6-v2")  # Lightweight similarity model
+    similarity_model_name = "all-MiniLM-L6-v2"  # Lightweight similarity model
 
     # Process all JSON files
     json_files = glob.glob("../CC_10000/quality_captions/*.json")
@@ -178,7 +181,7 @@ if __name__ == "__main__":
     unprocessed_files = []
     for json_file_name in json_files:
         clean_json_file_name = os.path.basename(json_file_name)[:-5]
-        file_path = f"../CC_10000/LLM_ha_4/{clean_json_file_name}.json"
+        file_path = f"../CC_10000/LLM_ha/{clean_json_file_name}.json"
         if not os.path.isfile(file_path):
             unprocessed_files.append(json_file_name)
 
@@ -186,7 +189,7 @@ if __name__ == "__main__":
 
     # Create tasks with GPU assignments
     tasks = [
-        (json_file, "EleutherAI/gpt-neo-2.7B", "EleutherAI/gpt-neo-2.7B", "all-MiniLM-L6-v2", idx % num_gpus)
+        (json_file, model_name, model_name, similarity_model_name, idx % num_gpus)
         for idx, json_file in enumerate(unprocessed_files)
     ]
 
