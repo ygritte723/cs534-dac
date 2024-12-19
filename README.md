@@ -1,6 +1,6 @@
 # CS 534 Final Project: LLM-assisted Compositional Image-text Matching
 
-## Based on Dense and Aligned Captions (DAC) Promote Compositional Reasoning in VL Models - An official repo for the *Spotlight* Neurips 2023 paper :) 
+## This repo is built based on Dense and Aligned Captions (DAC) Promote Compositional Reasoning in VL Models - An official repo for the *Spotlight* Neurips 2023 paper :) 
 
 Arxiv: https://arxiv.org/abs/2305.19595
 
@@ -18,17 +18,20 @@ pip install -r requirements.txt
 
 ## Data Preparations and creation 
 ### Training Data
+<!---
 #### Download CC3M data
 Download Conceptual Captions 3M training and validation splits from https://ai.google.com/research/ConceptualCaptions/download  
 After data preparation, place the data in `DAC/CC3M_data/training` and `DAC/CC3M_data/validation`  
 
 Download and place in `DAC/CC3M_data/` train_with_cap.csv and val_with_cap.csv from https://drive.google.com/drive/folders/1WosT_kdam1ymWjVSK2ezyydLoqmm0LdX?usp=sharing
+--->
 
 ### Evaluation data
+<!---
 Prepare vl checklist dataset as described in https://github.com/om-ai-lab/VL-CheckList/blob/main/DATASETS.md  
 Then move the vl dataset to `DAC/vl_datasets/`  
 If you followed the instructions correctly, you should have the following folders inside vl_datasets: **'hake', 'swig', 'vg'**. 
-
+--->
 
 First, navigate to the src directory:
 ```shell script
