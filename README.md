@@ -1,5 +1,6 @@
-# Dense and Aligned Captions (DAC) Promote Compositional Reasoning in VL Models
-## An official repo for the *Spotlight* Neurips 2023 paper :) 
+# CS 534 Final Project: LLM-assisted Compositional Image-text Matching
+
+## Based on Dense and Aligned Captions (DAC) Promote Compositional Reasoning in VL Models - An official repo for the *Spotlight* Neurips 2023 paper :) 
 
 Arxiv: https://arxiv.org/abs/2305.19595
 
