@@ -18,13 +18,12 @@ pip install -r requirements.txt
 
 ## Data Preparations and creation 
 ### Training Data
-<!---
+
 #### Download CC3M data
 Download Conceptual Captions 3M training and validation splits from https://ai.google.com/research/ConceptualCaptions/download  
-After data preparation, place the data in `DAC/CC3M_data/training` and `DAC/CC3M_data/validation`  
-
 Download and place in `DAC/CC3M_data/` train_with_cap.csv and val_with_cap.csv from https://drive.google.com/drive/folders/1WosT_kdam1ymWjVSK2ezyydLoqmm0LdX?usp=sharing
---->
+
+We sampled **10,00**0 images from the original **CC3M** training dataset, each paired with a single quality caption. Using the DAC **framework(Dense Caption)**, we generated **10 dense captions per image** to enrich the training dataset. This structured approach ensures diverse and detailed captions for robust model training.
 
 ### Evaluation data
 <!---
@@ -37,6 +36,8 @@ First, navigate to the src directory:
 ```shell script
 cd src
 ```
+In our project, we utilized the **VL\_Checklist** dataset, which is designed to evaluate fine-grained visual-linguistic understanding across categories such as color, size, actions, and spatial relations. Due to time and resource constraints, we sampled a total of **1,000 images**, with 500 images each from the "attributes" and "relations" categories. Specifically, we randomly selected **50–100 images** per subfolder (e.g., \texttt{vg/color}, \texttt{vaw/color}, \texttt{vg/size}, \texttt{hack\_action}, etc.). The sampled files are stored in \texttt{final\_sampled\_image} and \\ \texttt{final\_sampled\_json}.
+
 
 #### Create quality captions:
 
