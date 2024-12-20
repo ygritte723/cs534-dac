@@ -107,7 +107,7 @@ python3 training/main.py --epochs 10 --name exp_name --lora 4 --use_only_quality
 ## Evaluation
 ### Run the evaluation script
 #### you can download the baseline checkpoints of DAC_SAM and DAC_LLM from here: https://drive.google.com/drive/folders/1DmHeV8oWiMwtkaTH-nruMyjBiuJvcwnv?usp=sharing
-
+<!---
 All vl_checklist jsons will be saved in `DAC/eval_jsons/clip/exp_name/` and the result will be printed. 
 To prepare the vl checklist evaluate results for the experiment **exp_name** run the following command:
 ```shell script
@@ -119,3 +119,4 @@ To print the aro evaluated results for the experiment **exp_name** run the follo
 ```shell script
 python3 aro_clip_lora_eval.py  --lora 4 --resume /path/to/checkpoint
 ```
+---> 
