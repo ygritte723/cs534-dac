@@ -32,13 +32,14 @@ We sampled **10,00**0 images from the original **CC3M** training dataset, each p
 Prepare vl checklist dataset as described in https://github.com/om-ai-lab/VL-CheckList/blob/main/DATASETS.md  
 Then move the vl dataset to `DAC/vl_datasets/`  
 If you followed the instructions correctly, you should have the following folders inside vl_datasets: **'hake', 'swig', 'vg'**. 
---->
 
 First, navigate to the src directory:
 ```shell script
 cd src
 ```
-In our project, we utilized the **VL\_Checklist** dataset, which is designed to evaluate fine-grained visual-linguistic understanding across categories such as color, size, actions, and spatial relations. Due to time and resource constraints, we sampled a total of **1,000 images**, with 500 images each from the "attributes" and "relations" categories. Specifically, we randomly selected **50–100 images** per subfolder (e.g., \texttt{vg/color}, \texttt{vaw/color}, \texttt{vg/size}, \texttt{hack\_action}, etc.). The sampled files are stored in \texttt{final\_sampled\_image} and \\ \texttt{final\_sampled\_json}.
+--->
+
+In our project, we utilized the **VL\_Checklist** dataset, which is designed to evaluate fine-grained visual-linguistic understanding across categories such as color, size, actions, and spatial relations. Due to time and resource constraints, we sampled a total of **1,000 images**, with 500 images each from the "attributes" and "relations" categories. Specifically, we randomly selected **50–100 images** per subfolder (e.g., `vg/color`, `vaw/color`, `vg/size`, `hack\_action`, etc.). The sampled files are stored in `final_sampled_image` and \\ `final_sampled_json`.
 
 
 #### Create quality captions:
@@ -58,6 +59,13 @@ python3 training/main.py --create_SAM --save_data --batch-size 1 --workers 0 --m
 ```shell script
 mkdir DAC/LLM_dense/
 python3 create_LLM_dense.py
+```
+
+#### Create Dense captions with minimal hallucination:
+
+```shell script
+mkdir LLM_dense_ha/
+python3 create_LLM_dense_ha.py
 ```
 
 ### Evaluation data
@@ -82,6 +90,12 @@ python3 training/main.py --epochs 5 --name exp_name --lora 4 --use_only_quality_
 * LLM density:
 ```shell script
 python3 training/main.py --epochs 5 --name exp_name --lora 4 --use_only_quality_captions --batch-size 32 --mil_dense_negs --vl_negs --neg_type rand_both --auto_neg_types NOUN ADP ADJ VERB --mil_batch 10 --pretrained openai --mil_dense ../LLM_dense/
+```
+
+To train a network with quality captions and:
+* LLM density with minimal hallucination:
+```shell script
+python3 training/main.py --epochs 10 --name exp_name --lora 4 --use_only_quality_captions --batch-size 32 --mil_dense_negs --vl_negs --neg_type rand_both --auto_neg_types NOUN ADP ADJ VERB --mil_batch 10 --pretrained openai --mil_dense ../LLM_dense_ha/
 ```
 
 ## Evaluation
