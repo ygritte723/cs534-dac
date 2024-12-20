@@ -17,6 +17,8 @@ pip install -r requirements.txt
 ```
 
 ## Data Preparations and creation 
+Please download the data we selected for our work from:
+https://drive.google.com/drive/folders/1n3sH7q8F8JMdgfqaEy9FonrNfiFtGKdK?usp=sharing
 ### Training Data
 
 #### Download CC3M data
