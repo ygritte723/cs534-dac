@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ```
 
 ## Data Preparations and creation 
-Please download the data we selected for our work from:
+Please download the data we selected for our work from: <br/>
 https://drive.google.com/drive/folders/1n3sH7q8F8JMdgfqaEy9FonrNfiFtGKdK?usp=sharing
 The above folder consists of the following files:
 These files should be uploaded to the CC_10000 folder.
@@ -101,13 +101,17 @@ python3 training/main.py --epochs 5 --name exp_name --lora 4 --use_only_quality_
 
 * LLM density:
 ```shell script
-python3 training/main.py --epochs 5 --name exp_name --lora 4 --use_only_quality_captions --batch-size 32 --mil_dense_negs --vl_negs --neg_type rand_both --auto_neg_types NOUN ADP ADJ VERB --mil_batch 10 --pretrained openai --mil_dense ../LLM_dense/
+python3 training/main.py --epochs 10 --name exp_name --lora 4 --use_only_quality_captions --batch-size 32 --mil_dense_negs --vl_negs --neg_type rand_both --auto_neg_types NOUN ADP ADJ VERB --mil_batch 10 --pretrained openai --mil_dense ../LLM_dense/
 ```
 
 To train a network with quality captions and:
 * LLM density with minimal hallucination:
 ```shell script
 python3 training/main.py --epochs 10 --name exp_name --lora 4 --use_only_quality_captions --batch-size 32 --mil_dense_negs --vl_negs --neg_type rand_both --auto_neg_types NOUN ADP ADJ VERB --mil_batch 10 --pretrained openai --mil_dense ../LLM_dense_ha/
+```
+To train a network with Hard Negative Mining:
+```shell script
+python3 training/main.py --epochs 10 --name exp_name --lora 4 --use_only_quality_captions --batch-size 32 --mil_dense_negs --vl_negs --neg_type rand_both --auto_neg_types NOUN ADP ADJ VERB --mil_batch 10 --pretrained openai --mil_dense ../CC_10000/LLM_dense/ --train-data ../CC_10000/cc_10000.csv --csv-img-key image_file_name --csv-caption-key quality_captions --csv-separator , --quality_captions_folder ../CC_10000/quality_captions/
 ```
 
 ## Evaluation
