@@ -17,7 +17,8 @@ pip install -r requirements.txt
 ```
 
 ## Data Preparations and creation 
-Please download the data we selected for our work from: <br/>
+Please download the data we selected for our work from:
+
 https://drive.google.com/drive/folders/1n3sH7q8F8JMdgfqaEy9FonrNfiFtGKdK?usp=sharing
 The above folder consists of the following files:
 These files should be uploaded to the CC_10000 folder.
