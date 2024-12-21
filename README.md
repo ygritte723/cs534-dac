@@ -68,7 +68,7 @@ python3 create_LLM_dense.py
 mkdir LLM_dense_ha/
 python3 create_LLM_dense_ha.py
 ```
-
+The generated LLM_dense_ha json files for our project are located in [LLM_dense_ha folder](https://drive.google.com/file/d/1O80f3ZuFUd3jjmpJZmBAEBbLmInAfi_y/view?usp=share_link)
 <!---
 ### Evaluation data
 Prepare vl checklist dataset as described in https://github.com/om-ai-lab/VL-CheckList/blob/main/DATASETS.md  
@@ -121,3 +121,4 @@ python3 aro_clip_lora_eval.py  --lora 4 --resume /path/to/checkpoint
 ```
 ---> 
 The `evaluation.ipynb` notebook implements Top 1 and Top 3 retrieval accuracy metrics by ranking similarity scores between positive and negative captions.
+The trained weights are located in [Trained Weights](https://drive.google.com/drive/folders/1-10loXR5YDYTMs_LVRhOu9s7KTc4PBK_)
