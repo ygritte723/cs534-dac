@@ -108,7 +108,7 @@ To train a network with quality captions and:
 ```shell script
 python3 training/main.py --epochs 10 --name exp_name --lora 4 --use_only_quality_captions --batch-size 32 --mil_dense_negs --vl_negs --neg_type rand_both --auto_neg_types NOUN ADP ADJ VERB --mil_batch 10 --pretrained openai --mil_dense ../LLM_dense_ha/
 ```
-To train a network with Hard Negative Mining:
+To train a network with Hard Negative Mining: <br>
 Please first rename 'src/open_clip/loss_hard_negative_mining.py' to 'src/open_clip/loss.py', replacing the old loss file.
 ```shell script
 python3 training/main.py --epochs 10 --name exp_name --lora 4 --use_only_quality_captions --batch-size 32 --mil_dense_negs --vl_negs --neg_type rand_both --auto_neg_types NOUN ADP ADJ VERB --mil_batch 10 --pretrained openai --mil_dense ../CC_10000/LLM_dense/ --train-data ../CC_10000/cc_10000.csv --csv-img-key image_file_name --csv-caption-key quality_captions --csv-separator , --quality_captions_folder ../CC_10000/quality_captions/
