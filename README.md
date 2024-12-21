@@ -17,11 +17,9 @@ pip install -r requirements.txt
 ```
 
 ## Data Preparations and creation 
-Please download the data we selected for our work from:
-
-https://drive.google.com/drive/folders/1n3sH7q8F8JMdgfqaEy9FonrNfiFtGKdK?usp=sharing
-The above folder consists of the following files:
-These files should be uploaded to the CC_10000 folder.
+Please download the data we selected for our work from: <br>
+https://drive.google.com/drive/folders/1n3sH7q8F8JMdgfqaEy9FonrNfiFtGKdK?usp=sharing <br>
+Please upload the below files into a `CC_10000` folder with the same level as src.
 1. cc_10000.csv (the train csv) val_1000.csv (the validation csv), correct_test_set.csv (the test data and captions).
 2. LLM_dense.zip, and quality_captions.zip have all the captions for train and val dataset.
 3. test_images.zip, training.zip and validation.zip are the images for test, train, and validation.
